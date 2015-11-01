@@ -1,0 +1,27 @@
+{
+  "name": "node-pixelpi",
+  "version": "1.0.0",
+  "description": "node.js led package",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "glob": "^5.0.15",
+    "tape": "^4.2.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Auo/node-pixelpi.git"
+  },
+  "author": "Andreas Lindgren",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Auo/node-pixelpi/issues"
+  },
+  "homepage": "https://github.com/Auo/node-pixelpi#readme"
+}

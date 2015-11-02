@@ -3,16 +3,13 @@
   "version": "1.0.0",
   "description": "node.js led package",
   "main": "index.js",
-  "directories": {
-    "test": "test"
-  },
   "dependencies": {
     "glob": "^5.0.15",
     "tape": "^4.2.2"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node tests/test.js"
   },
   "repository": {
     "type": "git",

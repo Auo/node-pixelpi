@@ -8,7 +8,7 @@ test('Check init', function (t) {
     t.error(err, 'initialize loader OK!')
   })
 
- t.equal(animationLoader._toHex(255, 255, 255), 'ffffff')
+ t.equal(animationLoader._to24bit(animationLoader._toHex(255, 255, 255)), 0xffffff)
 
 
 console.log(parseInt('ffffff',16));

@@ -80,14 +80,18 @@ AnimationLoader.prototype._createFrameData = function _createFrameData (file, cb
       i++ // vill bli av med opacity
     }
 
-console.log(uint32);
+// console.log(uint32);
     return cb(uint32)
     // return cb(images[0])
   })
 }
 
 AnimationLoader.prototype._toHex = function (r, g, b) {
-        return '#' + r.toString(16) + g.toString(16) + b.toString(16);
+        return r.toString(16) + g.toString(16) + b.toString(16);
+}
+
+AnimationLoader.prototype._to24bit = function(hex) {
+  return parseInt(hex, 16)
 }
 
 module.exports = new AnimationLoader()

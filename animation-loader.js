@@ -84,11 +84,12 @@ AnimationLoader.prototype._createFrameData = function _createFrameData (file, cb
   var self = this
 
   pixelBitmap.parse(file).then(function (images) {
+
     var uint32 = new Uint32Array(256)
     var parsed = images[0]
     var uintIndex = 0
     for (var i = 0; i < parsed.data.length; i++) {
-      uint32[uintIndex] = self._to24bit(self._toHex(parsed.data[i], parsed.data[i++], parsed.data[i++]))
+      uint32[uintIndex] = self._rgb2Int(parsed.data[i], parsed.data[i++], parsed.data[i++])
       uintIndex++
       i++ // remove the last because that describes the opacity
     }
@@ -97,12 +98,16 @@ AnimationLoader.prototype._createFrameData = function _createFrameData (file, cb
   })
 }
 
-AnimationLoader.prototype._toHex = function _toHex (r, g, b) {
-  return r.toString(16) + g.toString(16) + b.toString(16)
+AnimationLoader.prototype._rgb2Int = function _rgb2Int(r, g, b) {
+  return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
 }
 
-AnimationLoader.prototype._to24bit = function _to24bit (hex) {
-  return parseInt(hex, 16)
-}
+// AnimationLoader.prototype._toHex = function _toHex (r, g, b) {
+//   return r.toString(16) + g.toString(16) + b.toString(16)
+// }
+//
+// AnimationLoader.prototype._to24bit = function _to24bit (hex) {
+//   return parseInt(hex, 16)
+// }
 
 module.exports = new AnimationLoader()

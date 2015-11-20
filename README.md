@@ -14,6 +14,9 @@ Inspired by [Game Frame](http://ledseq.com/) and [Pixel pi] (https://github.com/
 * Power supply with 5v and 10+ Ampere ( more than 5v, may damage the led-strip )
 * [Level shifter](https://www.adafruit.com/products/757) to boost data from raspberry to led-strip
 * [Capacitor 1000uF] (http://www.electrokit.com/el-lyt-1000uf-25v-85c-radial-o10x18mm.41799) to protect strip
+* [Cables AWG16 1.5mm2](http://www.electrokit.com/rk-1-5mm2-rod-m.53223) for connecting parts
+* [DC-jack 2.1mm](http://www.electrokit.com/dcjack-2-1mm-pcb-stift.52793) 
+* Resistor for data cable to led-strip ( not needed, but might be nice ). Between 220 and 470 Ω
 
 ## Installation
 ### Software
@@ -28,6 +31,9 @@ sudo dpkg -i node_archive_armhf.deb
 ```
 #### Wifi
 [Wifi setup](https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md)
+
+#### systemd for starting node.js on launch and crash
+TODO
 
 ### Hardware
 TODO

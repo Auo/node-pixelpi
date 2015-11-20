@@ -4,6 +4,7 @@ Inspired by [Game Frame](http://ledseq.com/) and [Pixel pi] (https://github.com/
 
 ## Requirement
 ### Software
+* [Raspberry pi Jessie] (https://www.raspberrypi.org/downloads/raspbian/)
 * Node.js 0.12.6
 * https://github.com/jgarff/rpi_ws281x
 * All .bmp pictures must be the same size, for now 16 x 16
@@ -35,6 +36,22 @@ sudo dpkg -i node_archive_armhf.deb
 #### systemd for starting node.js on launch and crash
 TODO
 
+changed service, update the daemon
+```
+systemctl daemon-reload   
+```
+enable, run this first
+```
+systemctl enable name.service
+```
+start service
+```
+systemctl start name.service
+```
+stop service
+```
+systemctl stop name.service
+```
 ### Hardware
 TODO
 

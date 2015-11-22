@@ -5,10 +5,11 @@ var NUMPIXELS = 4;
 
 animationLoader.init(16, 16, function (err, animations) {
   var aniSolid = animations[0].frames[0].data
-
   ws28x.init(NUMPIXELS)
 
-ws28x.reset()
+  ws28x.on('render', function() {
+    console.log(arguments);
+  })
 
   var pixeldata = new Uint32Array(NUMPIXELS)
 
@@ -16,9 +17,8 @@ ws28x.reset()
     pixeldata[i] = aniSolid[i]
   }
 
-  console.log(pixeldata)
   ws28x.render(pixeldata)
 
-
+//ws28x.reset()
 
 })

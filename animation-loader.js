@@ -25,17 +25,6 @@ AnimationLoader.prototype.init = function init (height, width, cb) {
           return parseInt(a.fileName.split('.')[0], 2) - parseInt(a.fileName.split('.')[0], 2)
         })
       })
- console.log(animations[0].frames[0].data)
- console.log(animations[0].frames[0].data.length)
-
-
-console.log('first', animations[0].frames[0].data[0]);
-
-console.log('second', animations[0].frames[0].data[1]);
-
-console.log('third', animations[0].frames[0].data[2]);
-
-console.log('forth', animations[0].frames[0].data[3]);
 
       return cb(null, animations)
     })
@@ -101,13 +90,5 @@ AnimationLoader.prototype._createFrameData = function _createFrameData (file, cb
 AnimationLoader.prototype._rgb2Int = function _rgb2Int(r, g, b) {
   return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
 }
-
-// AnimationLoader.prototype._toHex = function _toHex (r, g, b) {
-//   return r.toString(16) + g.toString(16) + b.toString(16)
-// }
-//
-// AnimationLoader.prototype._to24bit = function _to24bit (hex) {
-//   return parseInt(hex, 16)
-// }
 
 module.exports = new AnimationLoader()

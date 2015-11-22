@@ -1,24 +1,16 @@
 var animationLoader = require('./animation-loader.js')
+var animationPlayer = require('./animation-player.js')
 var ws28x = require('rpi-ws281x-native');
 
 var NUMPIXELS = 4;
 
+//Load the animations, asign the correct size so we can validate images
 animationLoader.init(16, 16, function (err, animations) {
-  var aniSolid = animations[0].frames[0].data
-  ws28x.init(NUMPIXELS)
+console.log(animations.length)
 
-  ws28x.on('render', function() {
-    console.log(arguments);
-  })
+  animationPlayer.init(2000, animations, 4, 4, function(err) {
+      if(err) throw err
 
-  var pixeldata = new Uint32Array(NUMPIXELS)
-
-  for (var i = 0; i < NUMPIXELS; i++) {
-    pixeldata[i] = aniSolid[i]
-  }
-
-  ws28x.render(pixeldata)
-
-//ws28x.reset()
-
+      console.log('animations up and running');
+  });
 })

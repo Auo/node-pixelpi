@@ -6,7 +6,7 @@
   "dependencies": {
     "glob": "^5.0.15",
     "pixel-bmp": "0.0.1",
-    "rpi-ws281x-native": "^0.5.0",
+    "rpi-ws281x-native": "^0.7.0",
     "tape": "^4.2.2"
   },
   "devDependencies": {},

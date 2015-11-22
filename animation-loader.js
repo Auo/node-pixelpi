@@ -13,7 +13,7 @@ AnimationLoader.prototype.init = function init (height, width, cb) {
   // see if there is a folder called animations.
   var self = this
 
-  glob(self.folder + '/animations/solid/*.bmp', function (err, files) {
+  glob(self.folder + '/animations/*/*.bmp', function (err, files) {
     if (err) return cb(err, null)
 
     self._buildAnimations(files, function (err, animations) {
@@ -39,7 +39,6 @@ AnimationLoader.prototype._buildAnimations = function _buildAnimations (files, c
 
   var _loop = function (files) {
     self._createFrameData(files[fileIndex], function (imgData) {
-//console.log(imgData);
 
       var splitted = files[fileIndex].split('/')
       if (splitted.length === 0) { return cb({message: 'something is wrong'}) }

@@ -8,13 +8,12 @@ AnimationPlayer.prototype.init = function init (loopInterval, animations, pixelH
   this.numPixels = pixelHeight * pixelWidth
   this.interval = loopInterval || (1000 / 16)
   this.currentAnimationIndex = 0 //starting animaton, should be 0
-  this.currentAnimationFrame = 0
+  this.currentAnimationFrame = 0 //starting animation frame, should be 0
   this.animations = animations
 
   if (!this.animations || this.animations.length === 0) {
     return cb({message: 'animations null or number of animations is zero'})
   }
-
 
   ws28x.init(this.numPixels)
   ws28x.setBrightness(20) //0-255 brightness
@@ -48,9 +47,7 @@ console.log(this.animations[this.currentAnimationIndex].name)
   for (var i = 0; i < this.numPixels; i++) {
     pixeldata[i] = this.animations[this.currentAnimationIndex].frames[this.currentAnimationFrame].data[i]
   }
-  console.log('draw frame called')
   ws28x.render(pixeldata)
-  //ws28x.render(this.animations[currentAnimationIndex].frames[currentAnimationFrame])
 }
 
 AnimationPlayer.prototype._nextAnimationFrame = function _nextAnimationFrame () {

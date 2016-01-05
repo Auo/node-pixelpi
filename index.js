@@ -5,6 +5,7 @@ var ws28x = require('rpi-ws281x-native');
 var NUMPIXELS = 4;
 
 //Load the animations, asign the correct size so we can validate images
+//TODO: remove sizes in player? 
 animationLoader.init(16, 16, function (err, animations) {
 console.log(animations.length)
 

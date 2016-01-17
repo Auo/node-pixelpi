@@ -53,13 +53,13 @@ stop service
 systemctl stop name.service
 ```
 ### Hardware
-##Done
+#### Done
 * Produce grid pattern
 * Prepare frame
 * Buy frame, from Åhlens
 * Remove security pins from frame
 
-##Todo
+#### Todo
 * Create board from experimentboard
 * Mount led strips
 * Solder led strips

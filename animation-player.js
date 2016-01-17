@@ -1,7 +1,7 @@
-var ws28x = require('rpi-ws281x-native');
+var ws281x = require('rpi-ws281x-native');
 
 function AnimationPlayer () {
-
+  
 }
 
 AnimationPlayer.prototype.init = function init (loopInterval, animations, pixelHeight, pixelWidth, cb) {
@@ -11,12 +11,14 @@ AnimationPlayer.prototype.init = function init (loopInterval, animations, pixelH
   this.currentAnimationFrame = 0 //starting animation frame, should be 0
   this.animations = animations
 
+  var self = this
+
   if (!this.animations || this.animations.length === 0) {
     return cb({message: 'animations null or number of animations is zero'})
   }
 
-  ws28x.init(this.numPixels)
-  ws28x.setBrightness(20) //0-255 brightness
+  ws281x.init(this.numPixels)
+  ws281x.setBrightness(50) //0-255 brightness
 
   this.intervalHandler = setInterval(this._loop.bind(this), this.interval);
 
@@ -40,14 +42,16 @@ AnimationPlayer.prototype.previousAnimation = function previousAnimation () {
 }
 
 AnimationPlayer.prototype._drawFrame = function _drawFrame () {
-console.log(this.animations[this.currentAnimationIndex].name)
-
+  //console.log(this.animations[this.currentAnimationIndex].name)
+  console.log(this.animations[this.currentAnimationIndex].frames[this.currentAnimationFrame].fileName)
   var pixeldata = new Uint32Array(this.numPixels)
 
+  //Loading the x-first pixels from the image. if for some reason you loaded a bigger image.
   for (var i = 0; i < this.numPixels; i++) {
     pixeldata[i] = this.animations[this.currentAnimationIndex].frames[this.currentAnimationFrame].data[i]
   }
-  ws28x.render(pixeldata)
+
+  ws281x.render(pixeldata)
 }
 
 AnimationPlayer.prototype._nextAnimationFrame = function _nextAnimationFrame () {

@@ -10,6 +10,7 @@ AnimationLoader.prototype.init = function init (height, width, cb) {
   this.folder = __dirname
   this.h = height
   this.w = width
+  this.numPixels = height * width
   // see if there is a folder called animations.
   var self = this
 
@@ -70,16 +71,14 @@ AnimationLoader.prototype._buildAnimations = function _buildAnimations (files, c
 
 AnimationLoader.prototype._createFrameData = function _createFrameData (file, cb) {
   var self = this
-
   pixelBitmap.parse(file).then(function (images) {
-
-    var uint32 = new Uint32Array(256)
+    var uint32 = new Uint32Array(self.numPixels)
     var parsed = images[0]
     var uintIndex = 0
-    for (var i = 0; i < parsed.data.length; i++) {
-      uint32[uintIndex] = self._rgb2Int(parsed.data[i], parsed.data[i++], parsed.data[i++])
+
+    for (var i = 0; i <= parsed.data.length / 4; i += 4) {
+      uint32[uintIndex] = self._rgb2Int(parsed.data[i], parsed.data[i + 1], parsed.data[i + 2])
       uintIndex++
-      i++ // remove the last because that describes the opacity
     }
 
     return cb(uint32)

@@ -58,15 +58,16 @@ systemctl stop name.service
 * Prepare frame
 * Buy frame, from Åhlens
 * Remove security pins from frame
+* Create board from experimentboard
 
 #### Todo
-* Create board from experimentboard
 * Mount led strips
 * Solder led strips
 * Mount RPI
 * Mount board
 * Create wall spacers ( Create a pocket of air behind to allow circulation )
 * Create wall mount or desk mount
+* Add paper to difuse light
 
 
 

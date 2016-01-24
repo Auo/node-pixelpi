@@ -1,7 +1,7 @@
 var ws281x = require('rpi-ws281x-native');
 
 function AnimationPlayer () {
-  
+
 }
 
 AnimationPlayer.prototype.init = function init (loopInterval, animations, pixelHeight, pixelWidth, cb) {
@@ -42,16 +42,9 @@ AnimationPlayer.prototype.previousAnimation = function previousAnimation () {
 }
 
 AnimationPlayer.prototype._drawFrame = function _drawFrame () {
-  //console.log(this.animations[this.currentAnimationIndex].name)
-  console.log(this.animations[this.currentAnimationIndex].frames[this.currentAnimationFrame].fileName)
-  var pixeldata = new Uint32Array(this.numPixels)
-
-  //Loading the x-first pixels from the image. if for some reason you loaded a bigger image.
-  for (var i = 0; i < this.numPixels; i++) {
-    pixeldata[i] = this.animations[this.currentAnimationIndex].frames[this.currentAnimationFrame].data[i]
-  }
-
-  ws281x.render(pixeldata)
+  console.log(this.animations[this.currentAnimationIndex].frames[this.currentAnimationFrame].data.length);
+  console.log(this.animations[this.currentAnimationIndex].frames[this.currentAnimationFrame].fileName);
+  ws281x.render(this.animations[this.currentAnimationIndex].frames[this.currentAnimationFrame].data);
 }
 
 AnimationPlayer.prototype._nextAnimationFrame = function _nextAnimationFrame () {

@@ -76,7 +76,7 @@ AnimationLoader.prototype._createFrameData = function _createFrameData (file, cb
     var parsed = images[0]
     var uintIndex = 0
 
-    for (var i = 0; i <= parsed.data.length / 4; i += 4) {
+    for (var i = 0; i <= parsed.data.length; i += 4) {
       uint32[uintIndex] = self._rgb2Int(parsed.data[i], parsed.data[i + 1], parsed.data[i + 2])
       uintIndex++
     }

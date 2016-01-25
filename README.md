@@ -59,10 +59,11 @@ systemctl stop name.service
 * Buy frame, from Åhlens
 * Remove security pins from frame
 * Create board from experimentboard
-
-#### Todo
 * Mount led strips
-* Solder led strips
+* 
+#### Todo
+
+* Solder led strips (half way)
 * Mount RPI
 * Mount board
 * Create wall spacers ( Create a pocket of air behind to allow circulation )

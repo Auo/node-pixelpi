@@ -14,7 +14,7 @@ AnimationLoader.prototype.init = function init (height, width, cb) {
   // see if there is a folder called animations.
   var self = this
 
-  glob(self.folder + '/animations/question/*.bmp', function (err, files) {
+  glob(self.folder + '/animations/*/*.bmp', function (err, files) {
     if (err) return cb(err, null)
 
     self._buildAnimations(files, function (err, animations) {
@@ -51,6 +51,7 @@ AnimationLoader.prototype._buildAnimations = function _buildAnimations (files, c
 
       var frameData = { fileName: frame, data: imgData }
       var index = animations.map(function (ani) { return ani.name }).indexOf(name)
+
 
       if (index !== -1) {
         animations[index].frames.push(frameData)

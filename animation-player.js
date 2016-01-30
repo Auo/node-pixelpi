@@ -11,8 +11,6 @@ AnimationPlayer.prototype.init = function init (loopInterval, animations, pixelH
   this.currentAnimationFrame = 0 //starting animation frame, should be 0
   this.animations = animations
 
-  var self = this
-console.log(this.numPixels,'pixels');
   if (!this.animations || this.animations.length === 0) {
     return cb({message: 'animations null or number of animations is zero'})
   }
@@ -41,10 +39,18 @@ AnimationPlayer.prototype.previousAnimation = function previousAnimation () {
   }
 }
 
+AnimationPlayer.prototype.startAnimationByName = function startAnimationByName (name) {
+    var index = this.animations.map(function (ani) { return ani.name }).indexOf(name)
+    if (index === -1) { return }
+
+    console.log('changing to animation with name: ', name)
+    this.currentAnimationIndex = index
+    this.currentAnimationFrame = 0
+}
+
 AnimationPlayer.prototype._drawFrame = function _drawFrame () {
-  console.log(this.animations[this.currentAnimationIndex].frames[this.currentAnimationFrame].data.length);
   console.log(this.animations[this.currentAnimationIndex].frames[this.currentAnimationFrame].fileName);
-  //console.log(this.animations[this.currentAnimationIndex].frames[this.currentAnimationFrame].data)
+
   ws281x.render(this.animations[this.currentAnimationIndex].frames[this.currentAnimationFrame].data);
 }
 

@@ -64,11 +64,6 @@ systemctl stop name.service
 * Add paper to difuse light (done-ish)
 
 #### Todo
-=======
-* Create board from experimentboard
-* Mount led strips
-*
-#### Todo
 * Mount RPI
 * Mount board
 * Create wall spacers ( Create a pocket of air behind to allow circulation )

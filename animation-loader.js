@@ -23,7 +23,7 @@ AnimationLoader.prototype.init = function init (height, width, cb) {
       animations.forEach(function (ani) {
         // Mutable sort
         ani.frames.sort(function (a, b) {
-          return parseInt(a.fileName.split('.')[0], 2) - parseInt(a.fileName.split('.')[0], 2)
+          return parseInt(a.fileName.split('.')[0], 10) - parseInt(b.fileName.split('.')[0], 10)
         })
       })
 

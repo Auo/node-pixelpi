@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "glob": "^5.0.15",
+    "ini": "^1.3.4",
     "pixel-bmp": "0.0.1",
     "rpi-ws281x-native": "0.8.1",
     "tape": "^4.2.2"

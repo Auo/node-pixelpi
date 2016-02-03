@@ -4,9 +4,8 @@ function AnimationPlayer () {
 
 }
 
-AnimationPlayer.prototype.init = function init (loopInterval, animations, pixelHeight, pixelWidth, cb) {
+AnimationPlayer.prototype.init = function init (animations, pixelHeight, pixelWidth, cb) {
   this.numPixels = pixelHeight * pixelWidth
-  this.interval = loopInterval || (1000 / 16)
   this.currentAnimationIndex = 0 //starting animaton, should be 0
   this.currentAnimationFrame = 0 //starting animation frame, should be 0
   this.animations = animations
@@ -18,12 +17,18 @@ AnimationPlayer.prototype.init = function init (loopInterval, animations, pixelH
   ws281x.init(this.numPixels)
   ws281x.setBrightness(50) //0-255 brightness
 
-  this.intervalHandler = setInterval(this._loop.bind(this), this.interval);
+  this.intervalHandler = null
 
   return cb()
 }
 
+AnimationPlayer.prototype._setIntervalHandler = function _setIntervalHandler(interval) {
+  if(this.intervalHandler) { clearInterval(this.intervalHandler) }
+  this.intervalHandler =  setInterval(this._loop.bind(this), interval)
+}
+
 AnimationPlayer.prototype.nextAnimation = function nextAnimation () {
+  this._setIntervalHandler(this.animations[index].interval)
   if ((this.currentAnimationIndex + 1) <= (this.animations.length - 1)) {
     this.currentAnimationIndex++
   }else {
@@ -32,6 +37,7 @@ AnimationPlayer.prototype.nextAnimation = function nextAnimation () {
 }
 
 AnimationPlayer.prototype.previousAnimation = function previousAnimation () {
+  this._setIntervalHandler(this.animations[index].interval)
   if (this.currentAnimationIndex - 1 >= 0) {
     this.currentAnimationIndex--
   }else {
@@ -43,14 +49,14 @@ AnimationPlayer.prototype.startAnimationByName = function startAnimationByName (
     var index = this.animations.map(function (ani) { return ani.name }).indexOf(name)
     if (index === -1) { return }
 
+    this._setIntervalHandler(this.animations[index].interval)
     console.log('changing to animation with name: ', name)
     this.currentAnimationIndex = index
     this.currentAnimationFrame = 0
+
 }
 
 AnimationPlayer.prototype._drawFrame = function _drawFrame () {
-  console.log(this.animations[this.currentAnimationIndex].frames[this.currentAnimationFrame].fileName);
-
   ws281x.render(this.animations[this.currentAnimationIndex].frames[this.currentAnimationFrame].data);
 }
 

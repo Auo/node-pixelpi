@@ -1,6 +1,8 @@
 'using strict'
 var glob = require('glob')
 var pixelBitmap = require('pixel-bmp')
+var ini = require('ini')
+var fs = require('fs')
 
 function AnimationLoader () {
 
@@ -20,7 +22,11 @@ AnimationLoader.prototype.init = function init (height, width, cb) {
     self._buildAnimations(files, function (err, animations) {
       if (err) return cb(err, null)
 
+//anropa här.
+
       animations.forEach(function (ani) {
+
+        ani.interval = self._getAnimationInterval(ani.path)
         // Mutable sort
         ani.frames.sort(function (a, b) {
           return parseInt(a.fileName.split('.')[0], 10) - parseInt(b.fileName.split('.')[0], 10)
@@ -56,7 +62,7 @@ AnimationLoader.prototype._buildAnimations = function _buildAnimations (files, c
       if (index !== -1) {
         animations[index].frames.push(frameData)
       } else {
-        animations.push({path: path, name: name, frames: [frameData]})
+        animations.push({path: path, name: name, frames: [frameData], interval: undefined})
       }
 
       fileIndex++
@@ -88,6 +94,15 @@ AnimationLoader.prototype._createFrameData = function _createFrameData (file, cb
 
 AnimationLoader.prototype._rgb2Int = function _rgb2Int(r, g, b) {
   return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
+}
+
+AnimationLoader.prototype._getAnimationInterval = function _getAnimationInterval(path) {
+  var file = path + '/config.ini'
+  if(!fs.existsSync(file)) { return 100 }
+
+  var config = ini.parse(fs.readFileSync(file,'utf-8'))
+
+  return parseInt(config.animation.hold)
 }
 
 module.exports = new AnimationLoader()

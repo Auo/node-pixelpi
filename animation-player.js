@@ -68,6 +68,10 @@ AnimationPlayer.prototype._nextAnimationFrame = function _nextAnimationFrame () 
   }
 }
 
+AnimationPlayer.prototype.reset = function reset () {
+  ws281x.reset()
+}
+
 AnimationPlayer.prototype._loop = function _loop () {
   this._drawFrame()
   this._nextAnimationFrame() // should always be 0 when there is just a static image

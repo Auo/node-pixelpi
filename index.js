@@ -9,6 +9,6 @@ animationLoader.init(16, 16, function (err, animations) {
       if(err) throw err
       console.log('animations up and running')
 
-       animationPlayer.startAnimationByName('car')
+       animationPlayer.startAnimationByName('drop')
   });
 })

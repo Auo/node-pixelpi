@@ -84,10 +84,27 @@ AnimationLoader.prototype._createFrameData = function _createFrameData (file, cb
     var uintIndex = 0
 
     for (var i = 0; i <= parsed.data.length; i += 4) {
-      uint32[uintIndex] = self._rgb2Int(parsed.data[i], parsed.data[i + 1], parsed.data[i + 2])
+      var row = Math.floor(uintIndex / self.w), col = uintIndex % self.w
+
+      var data = self._rgb2Int(parsed.data[i], parsed.data[i + 1], parsed.data[i + 2])
+
+      if(row % 2 == 0) {
+        uint32[uintIndex] = data
+      } else {
+        uint32[row * self.w + ( self.w - col - 1)] = data
+      }
+
       uintIndex++
     }
 
+
+
+
+
+
+//     console.log(uint32);
+//     console.log(uint32.length)
+// throw Error('hello')
     return cb(uint32)
   })
 }

@@ -19,43 +19,53 @@ AnimationPlayer.prototype.init = function init (animations, pixelHeight, pixelWi
 
   this.intervalHandler = null
 
+  this._setIntervalHandler()
+
   return cb()
+
+
 }
 
-AnimationPlayer.prototype._setIntervalHandler = function _setIntervalHandler(interval) {
+AnimationPlayer.prototype._clearIntervalHandler = function _clearIntervalHandler() {
   if(this.intervalHandler) { clearInterval(this.intervalHandler) }
-  this.intervalHandler =  setInterval(this._loop.bind(this), interval)
+}
+
+AnimationPlayer.prototype._setIntervalHandler = function _setIntervalHandler() {
+  this.intervalHandler =  setInterval(this._loop.bind(this), this.animations[this.currentAnimationIndex].interval)
 }
 
 AnimationPlayer.prototype.nextAnimation = function nextAnimation () {
-  this._setIntervalHandler(this.animations[this.currentAnimationIndex].interval)
+
+  this._clearIntervalHandler()
   this.currentAnimationFrame = 0
   if ((this.currentAnimationIndex + 1) <= (this.animations.length - 1)) {
     this.currentAnimationIndex++
   }else {
     this.currentAnimationIndex = 0
   }
+  this._setIntervalHandler()
+  console.log(this.animations[this.currentAnimationIndex].name)
 }
 
 AnimationPlayer.prototype.previousAnimation = function previousAnimation () {
-  this._setIntervalHandler(this.animations[this.currentAnimationIndex].interval)
+  this._clearIntervalHandler()
   this.currentAnimationFrame = 0
   if (this.currentAnimationIndex - 1 >= 0) {
     this.currentAnimationIndex--
   }else {
     this.currentAnimationIndex = this.animations.length - 1
   }
+  this._setIntervalHandler()
 }
 
 AnimationPlayer.prototype.startAnimationByName = function startAnimationByName (name) {
     var index = this.animations.map(function (ani) { return ani.name }).indexOf(name)
     if (index === -1) { return }
 
-    this._setIntervalHandler(this.animations[this.currentAnimationIndex].interval)
     console.log('changing to animation with name: ', name)
     this.currentAnimationIndex = index
     this.currentAnimationFrame = 0
-
+    this._setIntervalHandler()
 }
 
 AnimationPlayer.prototype._drawFrame = function _drawFrame () {

@@ -30,11 +30,11 @@ wget http://node-arm.herokuapp.com/node_archive_armhf.deb
 ```
 sudo dpkg -i node_archive_armhf.deb
 ```
+
 #### Wifi
 [Wifi setup](https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md)
 
 #### systemd for starting node.js on launch and crash
-TODO
 
 changed service, update the daemon
 ```
@@ -52,19 +52,4 @@ stop service
 ```
 systemctl stop name.service
 ```
-### Hardware
-#### Done
-* Produce grid pattern
-* Prepare frame
-* Buy frame, from Åhlens
-* Remove security pins from frame
-* Create board from experiment-board
-* Solder led strips
-* Mount led strips
-* Add paper to difuse light (done-ish)
 
-#### Todo
-* Mount RPI
-* Mount board
-* Create wall spacers ( Create a pocket of air behind to allow circulation )
-* Create wall mount or desk mount

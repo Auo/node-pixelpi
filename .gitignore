@@ -27,6 +27,7 @@ build/Release
 node_modules
 animations/*
 !animations/anim/
+!animations/solid/
 
 
 # Remove Thumbs.db

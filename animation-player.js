@@ -28,7 +28,8 @@ AnimationPlayer.prototype._setIntervalHandler = function _setIntervalHandler(int
 }
 
 AnimationPlayer.prototype.nextAnimation = function nextAnimation () {
-  this._setIntervalHandler(this.animations[index].interval)
+  this._setIntervalHandler(this.animations[this.currentAnimationIndex].interval)
+  this.currentAnimationFrame = 0
   if ((this.currentAnimationIndex + 1) <= (this.animations.length - 1)) {
     this.currentAnimationIndex++
   }else {
@@ -37,7 +38,8 @@ AnimationPlayer.prototype.nextAnimation = function nextAnimation () {
 }
 
 AnimationPlayer.prototype.previousAnimation = function previousAnimation () {
-  this._setIntervalHandler(this.animations[index].interval)
+  this._setIntervalHandler(this.animations[this.currentAnimationIndex].interval)
+  this.currentAnimationFrame = 0
   if (this.currentAnimationIndex - 1 >= 0) {
     this.currentAnimationIndex--
   }else {
@@ -49,7 +51,7 @@ AnimationPlayer.prototype.startAnimationByName = function startAnimationByName (
     var index = this.animations.map(function (ani) { return ani.name }).indexOf(name)
     if (index === -1) { return }
 
-    this._setIntervalHandler(this.animations[index].interval)
+    this._setIntervalHandler(this.animations[this.currentAnimationIndex].interval)
     console.log('changing to animation with name: ', name)
     this.currentAnimationIndex = index
     this.currentAnimationFrame = 0
@@ -76,8 +78,5 @@ AnimationPlayer.prototype._loop = function _loop () {
   this._drawFrame()
   this._nextAnimationFrame() // should always be 0 when there is just a static image
 }
-
-//TODO does the redraw have to happen when there is only ONE frame in the animation? It is static anyway.
-// Keep track of current animation have been drawn atleast once?
 
 module.exports = new AnimationPlayer()

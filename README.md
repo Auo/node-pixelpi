@@ -53,3 +53,9 @@ stop service
 systemctl stop name.service
 ```
 
+
+#### Todo
+- [ ] Solder On/Off switch
+- [ ] Cut wood, shape metalpiece to be able to attach buttons
+- [ ] Build UI for mobile access, Next and on/off to start with
+- [ ] Build Service.

@@ -2,14 +2,14 @@ var animationLoader = require('./animation-loader.js')
 var animationPlayer = require('./animation-player.js')
 var ws28x = require('rpi-ws281x-native')
 var gpio = require('rpi-gpio')
-var gpioNextChannel = 7
-var loaded = false;
+var nextGPIO = 7
+var powerGPIO = 16
 
 animationLoader.init(16, 16, function (err, animations) {
   animationPlayer.init(animations, 16, 16, function(err) {
       if(err) throw err
 
-      loaded = true
+      startGPIO()
       console.log('animations up and running')
   })
 })
@@ -19,12 +19,27 @@ process.on('SIGINT', function () {
   process.nextTick(function () { process.exit(0); })
 })
 
-gpio.on('change', function(channel, value) {
-  if(!loaded) { return }
 
-  if(channel == gpioNextChannel && !value) {
-    animationPlayer.nextAnimation()
-  }
-})
+function startGPIO () {
+  gpio.on('change', function(channel, value) {
+    console.log(channel, ' channel')
+    console.log(value, ' value')
+    if((channel !== nextGPIO && channel !== powerGPIO)) { return }
 
-gpio.setup(gpioNextChannel, gpio.DIR_IN, gpio.EDGE_RISING)
+    console.log('inside')
+    if(channel === nextGPIO && value) {
+      if(animationPlayer.isAnimationRunning()) {
+         animationPlayer.nextAnimation()
+      }
+    } else if(channel === powerGPIO && !value) {
+      if(animationPlayer.isAnimationRunning()) {
+        animationPlayer.pauseFrameAnimation()
+      } else {
+        animationPlayer.continueFrameAnimation()
+      }
+    }
+  })
+
+  gpio.setup(nextGPIO, gpio.DIR_IN, gpio.EDGE_RISING)
+  gpio.setup(powerGPIO, gpio.DIR_IN, gpio.EDGE_RISING)
+}

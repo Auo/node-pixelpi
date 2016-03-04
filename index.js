@@ -16,22 +16,21 @@ animationLoader.init(16, 16, function (err, animations) {
 
 process.on('SIGINT', function () {
   animationPlayer.reset()
-  process.nextTick(function () { process.exit(0); })
+  process.nextTick(function () { process.exit(0) })
 })
-
 
 function startGPIO () {
   gpio.on('change', function(channel, value) {
-    console.log(channel, ' channel')
-    console.log(value, ' value')
-    if((channel !== nextGPIO && channel !== powerGPIO)) { return }
+    if((channel !== nextGPIO && channel !== powerGPIO) || !value) { return }
 
-    console.log('inside')
-    if(channel === nextGPIO && value) {
+
+    if(channel === nextGPIO) {
       if(animationPlayer.isAnimationRunning()) {
          animationPlayer.nextAnimation()
       }
-    } else if(channel === powerGPIO && !value) {
+    }
+
+    if(channel === powerGPIO) {
       if(animationPlayer.isAnimationRunning()) {
         animationPlayer.pauseFrameAnimation()
       } else {

@@ -3,7 +3,7 @@ var animationPlayer = require('./animation-player.js')
 var ws28x = require('rpi-ws281x-native')
 var gpio = require('rpi-gpio')
 var nextGPIO = 7
-var powerGPIO = 16
+var powerGPIO = 22
 
 animationLoader.init(16, 16, function (err, animations) {
   animationPlayer.init(animations, 16, 16, function(err) {
@@ -21,16 +21,18 @@ process.on('SIGINT', function () {
 
 function startGPIO () {
   gpio.on('change', function(channel, value) {
-    if((channel !== nextGPIO && channel !== powerGPIO) || !value) { return }
+    console.log(channel, ' channel')
+    console.log(value, ' value')
+    if(channel !== nextGPIO && channel !== powerGPIO) { return }
 
 
-    if(channel === nextGPIO) {
+    if(channel === nextGPIO && value) {
       if(animationPlayer.isAnimationRunning()) {
          animationPlayer.nextAnimation()
       }
     }
 
-    if(channel === powerGPIO) {
+    if(channel === powerGPIO && !value) {
       if(animationPlayer.isAnimationRunning()) {
         animationPlayer.pauseFrameAnimation()
       } else {

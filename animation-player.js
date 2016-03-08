@@ -22,8 +22,6 @@ AnimationPlayer.prototype.init = function init (animations, pixelHeight, pixelWi
   this._setIntervalHandler()
 
   return cb()
-
-
 }
 
 AnimationPlayer.prototype._clearIntervalHandler = function _clearIntervalHandler() {
@@ -96,18 +94,15 @@ AnimationPlayer.prototype.continueFrameAnimation = function continueFrameAnimati
   ws281x.init(this.numPixels)
   //this doesn't work, why?
   setTimeout(this._setIntervalHandler.bind(this), 500)
-
-
 }
 
 AnimationPlayer.prototype.isAnimationRunning = function isAnimationRunning () {
-  return this.intervalHandler !== null
+  return !!this.intervalHandler
 }
 
 AnimationPlayer.prototype._loop = function _loop () {
   this._nextAnimationFrame() // should always be 0 when there is just a static image
   this._drawFrame()
-
 }
 
 module.exports = new AnimationPlayer()

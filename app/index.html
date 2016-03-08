@@ -1,0 +1,54 @@
+<html>
+<head>
+  <title>Tiley</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="stylesheet" href="/content/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="/content/css/bootstrap-theme.min.css"/>
+  <script src="/content/js/jquery-2.2.1.min.js"></script>
+  <script src="/content/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+        <button id="power" class="btn btn-default">Toggle light</button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 col-sm-6">
+        <button id="next" class="btn btn-default">Next</button>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <button id="prev" class="btn btn-default">Prev</button>
+      </div>
+    </div>
+  </div>
+</body>
+
+
+<script>
+  $(document).ready(function() {
+    $('#power').on('click',function() {
+      $.post('/togglePower', function success(){
+        alert('power changed')
+      })
+    })
+
+    $('#next').on('click', function (){
+      $.post('/next', function success(){
+        alert('next')
+      })
+    })
+
+    $('#prev').on('click',function() {
+      $.post('/prev', function success(){
+        alert('prev')
+      })
+    })
+  })
+
+</script>
+</html>

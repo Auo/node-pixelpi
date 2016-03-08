@@ -17,7 +17,6 @@ Inspired by [Game Frame](http://ledseq.com/) and [Pixel pi] (https://github.com/
 * [Capacitor 1000uF] (http://www.electrokit.com/el-lyt-1000uf-25v-85c-radial-o10x18mm.41799) to protect strip
 * [Cables AWG16 1.5mm2](http://www.electrokit.com/rk-1-5mm2-rod-m.53223) for connecting parts
 * [DC-jack 2.1mm](http://www.electrokit.com/dcjack-2-1mm-pcb-stift.52793)
-* Resistor for data cable to led-strip ( not needed, but might be nice ). Between 220 and 470 Ω
 
 ## Installation
 ### Software
@@ -52,10 +51,3 @@ stop service
 ```
 systemctl stop name.service
 ```
-
-
-#### Todo
-- [ ] Solder On/Off switch
-- [ ] Cut wood, shape metalpiece to be able to attach buttons
-- [ ] Build UI for mobile access, Next and on/off to start with
-- [ ] Build Service.

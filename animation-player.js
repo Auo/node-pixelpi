@@ -87,11 +87,13 @@ AnimationPlayer.prototype.reset = function reset () {
 
 AnimationPlayer.prototype.pauseFrameAnimation = function stopFrameAnimation () {
   this._clearIntervalHandler()
+  //draw a black frame and then cancel iteration?
   this.reset()
 }
 
 AnimationPlayer.prototype.continueFrameAnimation = function continueFrameAnimation () {
   ws281x.init(this.numPixels)
+  ws281x.setBrightness(50)
   //this doesn't work, why?
   setTimeout(this._setIntervalHandler.bind(this), 500)
 }

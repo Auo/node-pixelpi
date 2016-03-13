@@ -1,0 +1,11 @@
+[Unit]
+Description=node-pixelpi
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/node --harmony /home/pi/node-pixelpi/index.js
+KillMode=process
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

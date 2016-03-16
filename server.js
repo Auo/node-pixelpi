@@ -10,9 +10,8 @@ function Server() {
 
 Server.prototype.init = function init (animationPlayer) {
   this.animationPlayer = animationPlayer
-
+  app.use(serve(__dirname + '/app'))
   var self = this
-  app.use(serve('./app'))
 
   router.post('/togglePower', function * (){
     if(self.animationPlayer.isAnimationRunning()) {
@@ -43,7 +42,7 @@ Server.prototype.init = function init (animationPlayer) {
   app.use(router.routes())
   app.use(router.allowedMethods())
 
-  app.listen(3000)
+  app.listen(80)
 }
 
 module.exports = new Server()

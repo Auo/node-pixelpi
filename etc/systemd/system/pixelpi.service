@@ -1,11 +1,14 @@
 [Unit]
 Description=node-pixelpi
-After=network.target
+Wants=network-online.target
+After=network.target network-online.target
 
 [Service]
 ExecStart=/usr/local/bin/node --harmony /home/pi/node-pixelpi/index.js
 KillMode=process
 Restart=on-failure
+StandardOutput=syslog               # Output to syslog
+StandardError=syslog                # Output to syslog
 
 [Install]
 WantedBy=multi-user.target

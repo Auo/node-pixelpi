@@ -45,7 +45,6 @@ AnimationPlayer.prototype.nextAnimation = function nextAnimation () {
     this.currentAnimationIndex = 0
   }
   this._setIntervalHandler()
-  console.log(this.animations[this.currentAnimationIndex].name)
 }
 
 AnimationPlayer.prototype.previousAnimation = function previousAnimation () {
@@ -94,7 +93,6 @@ AnimationPlayer.prototype.pauseFrameAnimation = function stopFrameAnimation () {
 AnimationPlayer.prototype.continueFrameAnimation = function continueFrameAnimation () {
   ws281x.init(this.numPixels)
   ws281x.setBrightness(50)
-  //this doesn't work, why?
   setTimeout(this._setIntervalHandler.bind(this), 500)
 }
 

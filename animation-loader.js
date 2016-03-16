@@ -22,12 +22,9 @@ AnimationLoader.prototype.init = function init (height, width, cb) {
     self._buildAnimations(files, function (err, animations) {
       if (err) return cb(err, null)
 
-//anropa här.
-
       animations.forEach(function (ani) {
-
         ani.interval = self._getAnimationInterval(ani.path)
-        // Mutable sort
+
         ani.frames.sort(function (a, b) {
           return parseInt(a.fileName.split('.')[0], 10) - parseInt(b.fileName.split('.')[0], 10)
         })
@@ -57,7 +54,6 @@ AnimationLoader.prototype._buildAnimations = function _buildAnimations (files, c
 
       var frameData = { fileName: frame, data: imgData }
       var index = animations.map(function (ani) { return ani.name }).indexOf(name)
-
 
       if (index !== -1) {
         animations[index].frames.push(frameData)
@@ -97,14 +93,6 @@ AnimationLoader.prototype._createFrameData = function _createFrameData (file, cb
       uintIndex++
     }
 
-
-
-
-
-
-//     console.log(uint32);
-//     console.log(uint32.length)
-// throw Error('hello')
     return cb(uint32)
   })
 }

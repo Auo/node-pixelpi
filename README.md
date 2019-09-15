@@ -1,20 +1,20 @@
 # node-pixelpi
 Loads .bmp images and outputs them to a led matrix constructed with the ws2812b led-strip, animations and static
-Inspired by [Game Frame](http://ledseq.com/) and [Pixel pi] (https://github.com/marian42/pixelpi)
+Inspired by [Game Frame](http://ledseq.com/) and [Pixel pi](https://github.com/marian42/pixelpi)
 
 ## Requirement
 ### Software
-* [Raspberry pi Jessie] (https://www.raspberrypi.org/downloads/raspbian/)
+* [Raspberry pi Jessie](https://www.raspberrypi.org/downloads/raspbian/)
 * Node.js 0.12.6
-* https://github.com/jgarff/rpi_ws281x
-* All .bmp pictures must be the same size, for now 16 x 16
+* [rpi_ws281x](https://github.com/jgarff/rpi_ws281x)
+* All `.bmp` pictures must be the same size, 16 x 16 pixels
 
 ### Hardware
 * Raspberry Pi
 * ws2812b led-strip
 * Power supply with 5v and 10+ Ampere ( more than 5v, may damage the led-strip )
 * [Level shifter](https://www.adafruit.com/products/757) to boost data from raspberry to led-strip
-* [Capacitor 1000uF] (http://www.electrokit.com/el-lyt-1000uf-25v-85c-radial-o10x18mm.41799) to protect strip
+* [Capacitor 1000uF](http://www.electrokit.com/el-lyt-1000uf-25v-85c-radial-o10x18mm.41799) to protect strip
 * [Cables AWG16 1.5mm2](http://www.electrokit.com/rk-1-5mm2-rod-m.53223) for connecting parts
 * [DC-jack 2.1mm](http://www.electrokit.com/dcjack-2-1mm-pcb-stift.52793)
 

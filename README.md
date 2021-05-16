@@ -1,5 +1,7 @@
 # node-pixelpi
-Loads .bmp images and outputs them to a led matrix constructed with the ws2812b led-strip, animations and static
+⚠ **Unmaintained** ⚠
+
+Loads `.bmp` images and outputs them to a led matrix constructed with the ws2812b led-strip, animations and static
 Inspired by [Game Frame](http://ledseq.com/) and [Pixel pi](https://github.com/marian42/pixelpi)
 
 ## Requirement
